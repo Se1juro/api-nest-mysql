@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateUserValidator } from './validators/createUser.validator';
 import { UserRepository } from './repositories/user.repository';
 
@@ -27,6 +31,12 @@ export class UsersService {
   }
 
   async getUserById(id: number) {
-    return await this.usersRepository.findOne({ where: { id } });
+    const user = await this.usersRepository.findOne({ where: { id } });
+    if (!user)
+      throw new NotFoundException('User not found', {
+        cause: new Error(),
+        description: 'User not found',
+      });
+    return user;
   }
 }

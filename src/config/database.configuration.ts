@@ -7,6 +7,6 @@ export const DATABASE_CONFIGURATION: TypeOrmModuleOptions = {
   username: 'daniel',
   password: '%AngeBm2020%',
   database: 'first-api-bd-nest',
-  entities: [__dirname + '/**/*.model{.ts,.js}'],
+  entities: [__dirname + '/../**/*.model{.ts,.js}'],
   synchronize: true, // False in production
 };

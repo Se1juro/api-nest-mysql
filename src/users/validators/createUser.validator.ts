@@ -2,7 +2,7 @@ import { IsEmail, IsString, MinLength } from 'class-validator';
 
 export class CreateUserValidator {
   @IsEmail()
-  emails: string;
+  email: string;
 
   @IsString()
   @MinLength(2)

@@ -1,14 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { Users } from './users.model';
 import { CreateUserValidator } from './validators/createUser.validator';
+import { UserRepository } from './repositories/user.repository';
 
 @Injectable()
 export class UsersService {
-  constructor(
-    @InjectRepository(Users) private usersRepository: Repository<Users>,
-  ) {}
+  constructor(private usersRepository: UserRepository) {}
 
   async createUser(user: CreateUserValidator) {
     const newUser = this.usersRepository.create(user);
